@@ -74,6 +74,10 @@ function renderQuizCards(questions, quizContainer) {
         const quizCard = document.createElement('div');
         quizCard.classList.add('quiz_card');
 
+            const Qno = document.createElement('h1');
+            Qno.textContent = "Question: " + (questions.indexOf(e)+1)
+            quizCard.appendChild(Qno);
+
         const questionHeader = document.createElement('h3');
         questionHeader.textContent = e.question;
         quizCard.appendChild(questionHeader);
@@ -89,12 +93,14 @@ function renderQuizCards(questions, quizContainer) {
             inputElement.value = label;
             inputElement.id = `${questions.indexOf(e)}${label}`;
 
-            const labelElement = document.createElement('label');
+            const labelElement = document.createElement('span');
             labelElement.setAttribute('for', `${questions.indexOf(e)}${label}`);
             labelElement.textContent = `${label}) ${e[label]}`;
 
-            optionsDiv.appendChild(inputElement);
-            optionsDiv.appendChild(labelElement);
+            const option = document.createElement('div');
+            option.appendChild(inputElement)
+            option.appendChild(labelElement)
+            optionsDiv.appendChild(option);
         });
 
         quizCard.appendChild(optionsDiv);
