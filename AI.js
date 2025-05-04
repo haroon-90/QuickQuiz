@@ -115,20 +115,26 @@ submitButton.addEventListener('click', () => {
         const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
         if (selectedOption) {
             if (selectedOption.value === question.correct) {
-                const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
+            const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
+            if (correctLabel) {
                 correctLabel.style.backgroundColor = 'Green';
                 correctLabel.style.padding = '10px';
                 correctLabel.style.borderRadius = '10px';
-                score++;
+            }
+            score++;
             } else {
-                const selectedLabel = document.querySelector(`label[for="${index}${selectedOption.value}"]`);
+            const selectedLabel = document.querySelector(`label[for="${index}${selectedOption.value}"]`);
+            if (selectedLabel) {
                 selectedLabel.style.backgroundColor = 'red';
                 selectedLabel.style.padding = '10px';
                 selectedLabel.style.borderRadius = '10px';
-                const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
+            }
+            const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
+            if (correctLabel) {
                 correctLabel.style.backgroundColor = 'Green';
                 correctLabel.style.padding = '10px';
                 correctLabel.style.borderRadius = '10px';
+            }
             }
         }
     });
