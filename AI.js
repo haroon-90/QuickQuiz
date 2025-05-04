@@ -116,17 +116,17 @@ submitButton.addEventListener('click', () => {
         if (selectedOption) {
             if (selectedOption.value === question.correct) {
                 const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
-                correctLabel.style.backgroundColor = 'springGreen';
+                correctLabel.style.backgroundColor = 'Green';
                 correctLabel.style.padding = '10px';
                 correctLabel.style.borderRadius = '10px';
                 score++;
             } else {
                 const selectedLabel = document.querySelector(`label[for="${index}${selectedOption.value}"]`);
-                selectedLabel.style.backgroundColor = 'Tomato';
+                selectedLabel.style.backgroundColor = 'red';
                 selectedLabel.style.padding = '10px';
                 selectedLabel.style.borderRadius = '10px';
                 const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
-                correctLabel.style.backgroundColor = 'springGreen';
+                correctLabel.style.backgroundColor = 'Green';
                 correctLabel.style.padding = '10px';
                 correctLabel.style.borderRadius = '10px';
             }
