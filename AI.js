@@ -74,9 +74,9 @@ function renderQuizCards(questions, quizContainer) {
         const quizCard = document.createElement('div');
         quizCard.classList.add('quiz_card');
 
-            const Qno = document.createElement('h1');
-            Qno.textContent = "Question: " + (questions.indexOf(e)+1)
-            quizCard.appendChild(Qno);
+        const Qno = document.createElement('h1');
+        Qno.textContent = "Question: " + (questions.indexOf(e) + 1);
+        quizCard.appendChild(Qno);
 
         const questionHeader = document.createElement('h3');
         questionHeader.textContent = e.question;
@@ -87,26 +87,33 @@ function renderQuizCards(questions, quizContainer) {
 
         const labels = ['a', 'b', 'c', 'd'];
         labels.forEach(label => {
+            const optionContainer = document.createElement('div');
+            optionContainer.style.display = 'flex';
+            optionContainer.style.alignItems = 'center';
+            optionContainer.style.marginBottom = '8px';
+            optionContainer.style.gap = '8px';
+
             const inputElement = document.createElement('input');
             inputElement.type = 'radio';
             inputElement.name = `q${questions.indexOf(e)}`;
             inputElement.value = label;
             inputElement.id = `${questions.indexOf(e)}${label}`;
 
-            const labelElement = document.createElement('span');
+            const labelElement = document.createElement('label');
             labelElement.setAttribute('for', `${questions.indexOf(e)}${label}`);
             labelElement.textContent = `${label}) ${e[label]}`;
 
-            const option = document.createElement('div');
-            option.appendChild(inputElement)
-            option.appendChild(labelElement)
-            optionsDiv.appendChild(option);
+            optionContainer.appendChild(inputElement);
+            optionContainer.appendChild(labelElement);
+            optionsDiv.appendChild(optionContainer);
         });
 
         quizCard.appendChild(optionsDiv);
         quizContainer.appendChild(quizCard);
     });
 }
+
+
 
 const submitButton = document.getElementById('submit-quiz');
 submitButton.addEventListener('click', () => {
@@ -117,7 +124,7 @@ submitButton.addEventListener('click', () => {
             if (selectedOption.value === question.correct) {
             const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
             if (correctLabel) {
-                correctLabel.style.backgroundColor = 'Green';
+                correctLabel.style.backgroundColor = 'springGreen';
                 correctLabel.style.padding = '10px';
                 correctLabel.style.borderRadius = '10px';
             }
@@ -125,13 +132,13 @@ submitButton.addEventListener('click', () => {
             } else {
             const selectedLabel = document.querySelector(`label[for="${index}${selectedOption.value}"]`);
             if (selectedLabel) {
-                selectedLabel.style.backgroundColor = 'red';
+                selectedLabel.style.backgroundColor = 'tomato';
                 selectedLabel.style.padding = '10px';
                 selectedLabel.style.borderRadius = '10px';
             }
             const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
             if (correctLabel) {
-                correctLabel.style.backgroundColor = 'Green';
+                correctLabel.style.backgroundColor = 'springGreen';
                 correctLabel.style.padding = '10px';
                 correctLabel.style.borderRadius = '10px';
             }
