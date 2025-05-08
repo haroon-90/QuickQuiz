@@ -2,13 +2,15 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick Quiz | Let’s Quiz It Out!</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles3.css">
     <link rel="shortcut icon" href="QuickQuiz_icon.svg" type="image/x-icon">
 </head>
+
 <body>
     <header>
         <img src="QuickQuiz.svg" alt="Logo">
@@ -20,14 +22,19 @@
             <h3>Enter a topic to generate quiz</h3>
             <input type="text" class="topic_input" id="topic_input">
             <button id="generate_btn">Generate</button>
-        </section> 
+        </section>
         <section id="quiz-section">
             <h2>Quiz of the Day</h2>
             <h2 class="topic_name">Topic</h2>
-            <div class="generating" style="display: none;" ></div>
+            <div class="generating" style="display: none;">
+                <!-- <div class="loader"></div> -->
+                <div class="typing-loader">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
             <div id="quiz-container">
                 <!-- Quiz questions will be dynamically inserted here -->
-                 <!-- <div class="quiz_card">
+                <!-- <div class="quiz_card">
                     <h3>Question 1</h3>
                     <p>What is the capital of France?</p>
                     <div class="options">
@@ -57,4 +64,5 @@
     <!-- <script src="script.js"></script> -->
     <script src="AI.js"></script>
 </body>
+
 </html>

@@ -47,16 +47,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("generate_btn").addEventListener("click", async function () {
         input = document.getElementById("topic_input").value;
-        topicNameElement.innerHTML = `Topic: ${input}`;
-        is_generating = true;
-        updateLoadingAnimation()
-        const response = await run(input);
-        const jsonString = response.trim();
-        const cleanResponse = jsonString.startsWith('```json') ? jsonString.slice(7, -3) : jsonString;
-        questions = JSON.parse(cleanResponse);
-        is_generating = false;
-        updateLoadingAnimation()
-        renderQuizCards(questions, quizContainer);
+        if (input == "")
+            alert("Please enter a topic to generate quiz")
+        else {
+            topicNameElement.innerHTML = `Topic: ${input}`;
+            is_generating = true;
+            updateLoadingAnimation()
+            const response = await run(input);
+            const jsonString = response.trim();
+            const cleanResponse = jsonString.startsWith('```json') ? jsonString.slice(7, -3) : jsonString;
+            questions = JSON.parse(cleanResponse);
+            is_generating = false;
+            updateLoadingAnimation()
+            renderQuizCards(questions, quizContainer);
+        }
     });
 
     setTimeout(async () => {
@@ -122,26 +126,26 @@ submitButton.addEventListener('click', () => {
         const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
         if (selectedOption) {
             if (selectedOption.value === question.correct) {
-            const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
-            if (correctLabel) {
-                correctLabel.style.backgroundColor = 'springGreen';
-                correctLabel.style.padding = '10px';
-                correctLabel.style.borderRadius = '10px';
-            }
-            score++;
+                const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
+                if (correctLabel) {
+                    correctLabel.style.backgroundColor = 'springGreen';
+                    correctLabel.style.padding = '10px';
+                    correctLabel.style.borderRadius = '10px';
+                }
+                score++;
             } else {
-            const selectedLabel = document.querySelector(`label[for="${index}${selectedOption.value}"]`);
-            if (selectedLabel) {
-                selectedLabel.style.backgroundColor = 'tomato';
-                selectedLabel.style.padding = '10px';
-                selectedLabel.style.borderRadius = '10px';
-            }
-            const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
-            if (correctLabel) {
-                correctLabel.style.backgroundColor = 'springGreen';
-                correctLabel.style.padding = '10px';
-                correctLabel.style.borderRadius = '10px';
-            }
+                const selectedLabel = document.querySelector(`label[for="${index}${selectedOption.value}"]`);
+                if (selectedLabel) {
+                    selectedLabel.style.backgroundColor = 'tomato';
+                    selectedLabel.style.padding = '10px';
+                    selectedLabel.style.borderRadius = '10px';
+                }
+                const correctLabel = document.querySelector(`label[for="${index}${question.correct}"]`);
+                if (correctLabel) {
+                    correctLabel.style.backgroundColor = 'springGreen';
+                    correctLabel.style.padding = '10px';
+                    correctLabel.style.borderRadius = '10px';
+                }
             }
         }
     });
