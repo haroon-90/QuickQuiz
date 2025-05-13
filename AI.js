@@ -154,3 +154,40 @@ document.getElementById('retry-quiz').addEventListener('click', () => {
     });
     submitButton.disabled = false;
 });
+const about = document.querySelector('.about');
+
+// Show a modal box with developer info at the center of the screen on click of the .about element
+const aboutModal = document.createElement('div');
+aboutModal.classList.add('aboutmodal');
+
+const aboutContent = document.createElement('div');
+aboutContent.classList.add('aboutContent');
+aboutContent.innerHTML = `
+    <h2>About QuickQuiz</h2>
+    <p>Developed by: Muhammad Haroon Nawaz</p>
+    <p>
+        QuickQuiz is an AI-powered quiz generator that creates multiple-choice questions on any topic you enter<br>
+        Enter a topic, generate a quiz, and test your knowledge instantly!
+    </p>
+        <div>Powered by Google Gemini AI Model</div>
+        <div>All quizzes are generated in real-time</div>
+        <div>No data is stored or shared</div>
+        <p>QuickQuiz v1.0</p>
+    <button id="close-about-modal">Close</button>
+`;
+
+aboutModal.appendChild(aboutContent);
+document.body.appendChild(aboutModal);
+
+about.addEventListener('click', () => {
+    aboutModal.style.display = 'flex';
+});
+
+aboutModal.addEventListener('click', (e) => {
+    if (e.target === aboutModal) {
+        aboutModal.style.display = 'none';
+    }
+});
+document.getElementById('close-about-modal').addEventListener('click', () => {
+    aboutModal.style.display = 'none';
+});
