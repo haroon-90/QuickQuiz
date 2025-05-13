@@ -2,7 +2,6 @@ const apiKey = "AIzaSyAxuab6K_703XmpSqd4L_4tJggKALKB24c";
 
 async function run(userInput) {
     const url = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=" + apiKey;
-
     const requestBody = {
         contents: [{
             parts: [{
@@ -12,7 +11,6 @@ async function run(userInput) {
             }]
         }]
     };
-
     const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -20,17 +18,14 @@ async function run(userInput) {
         },
         body: JSON.stringify(requestBody)
     });
-
     const data = await response.json();
     console.log(data);
-
     return data?.candidates[0]?.content?.parts[0]?.text;
 }
-
 let questions = [];
 let input;
 let is_generating = false;
-
+let response = "";
 let loading = document.querySelector('.generating');
 
 function updateLoadingAnimation() {
@@ -40,7 +35,6 @@ function updateLoadingAnimation() {
         loading.style.display = 'none';
     }
 }
-
 document.addEventListener("DOMContentLoaded", function () {
     const topicNameElement = document.querySelector(".topic_name");
     const quizContainer = document.getElementById('quiz-container');
@@ -50,10 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (input == "")
             alert("Please enter a topic to generate quiz")
         else {
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('quiz-container').innerHTML = '';
             topicNameElement.innerHTML = `Topic: ${input}`;
             is_generating = true;
             updateLoadingAnimation()
-            const response = await run(input);
+            response = await run(input);
             const jsonString = response.trim();
             const cleanResponse = jsonString.startsWith('```json') ? jsonString.slice(7, -3) : jsonString;
             questions = JSON.parse(cleanResponse);
@@ -62,15 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             renderQuizCards(questions, quizContainer);
         }
     });
-
-    setTimeout(async () => {
-        const response = await run("Web Development");
-        questions = JSON.parse(response);
-        topicNameElement.innerHTML = `Topic: Web Development`;
-        renderQuizCards(questions, quizContainer);
-    }, 1000);
 });
-
 function renderQuizCards(questions, quizContainer) {
     quizContainer.innerHTML = '';
 
@@ -116,9 +104,6 @@ function renderQuizCards(questions, quizContainer) {
         quizContainer.appendChild(quizCard);
     });
 }
-
-
-
 const submitButton = document.getElementById('submit-quiz');
 submitButton.addEventListener('click', () => {
     let score = 0;
@@ -149,9 +134,7 @@ submitButton.addEventListener('click', () => {
             }
         }
     });
-
     document.getElementById('results-section').style.display = 'flex';
-
     const resultsContainer = document.getElementById('results-container');
     resultsContainer.style.padding = '10px'
     resultsContainer.innerHTML = `You scored ${score} out of ${questions.length}!`;
@@ -160,11 +143,11 @@ submitButton.addEventListener('click', () => {
 document.getElementById('retry-quiz').addEventListener('click', () => {
     document.getElementById('results-section').style.display = 'none';
     document.getElementById('quiz-container').style.display = 'none';
+    response = "";
     const labels = document.querySelectorAll('label');
     labels.forEach(label => {
         label.style.backgroundColor = '';
     });
-
     const radioButtons = document.querySelectorAll('input[type="radio"]');
     radioButtons.forEach(radio => {
         radio.checked = false;
