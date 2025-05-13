@@ -138,6 +138,7 @@ submitButton.addEventListener('click', () => {
     const resultsContainer = document.getElementById('results-container');
     resultsContainer.style.padding = '10px'
     resultsContainer.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    submitButton.disabled = true;
 });
 document.getElementById('retry-quiz').addEventListener('click', () => {
     document.getElementById('results-section').style.display = 'none';
@@ -151,4 +152,5 @@ document.getElementById('retry-quiz').addEventListener('click', () => {
     radioButtons.forEach(radio => {
         radio.checked = false;
     });
+    submitButton.disabled = false;
 });

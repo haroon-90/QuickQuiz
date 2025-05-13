@@ -143,6 +143,10 @@ main {
     transition: background 0.3s;
 }
 
+#submit-quiz:disabled {
+    background-color: var(--primary-light);
+}
+
 #results-section {
     text-align: center;
     padding: 30px;
