@@ -139,7 +139,6 @@ submitButton.addEventListener('click', () => {
     resultsContainer.style.padding = '10px'
     resultsContainer.innerHTML = `You scored ${score} out of ${questions.length}!`;
 });
-
 document.getElementById('retry-quiz').addEventListener('click', () => {
     document.getElementById('results-section').style.display = 'none';
     document.getElementById('quiz-container').style.display = 'none';
