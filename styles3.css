@@ -191,7 +191,7 @@ main {
     transition: background 0.3s;
 }
 
-#submit-quiz:ids {
+#submit-quiz:disabled {
     background-color: var(--primary-light);
 }
 
