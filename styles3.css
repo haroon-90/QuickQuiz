@@ -197,7 +197,8 @@ main {
 }
 
 #submit-quiz:disabled {
-    background-color: var(--primary-light);
+    /* background-color: var(--primary-light); */
+    display: none;
 }
 
 #results-section {
