@@ -154,6 +154,10 @@ main {
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .topic_name {
@@ -238,7 +242,7 @@ footer {
 }
 
 /* 🔄 Typing Dots Loader */
-.typing-loader {
+/* .typing-loader {
     display: flex;
     gap: 6px;
     justify-content: center;
@@ -259,9 +263,9 @@ footer {
 
 .typing-loader span:nth-child(3) {
     animation-delay: 0.4s;
-}
+} */
 
-@keyframes bounce {
+/* @keyframes bounce {
 
     0%,
     80%,
@@ -273,6 +277,38 @@ footer {
     40% {
         transform: scale(1.2);
         opacity: 1;
+    }
+} */
+
+.loader {
+    width: fit-content;
+    font-size: 40px;
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #0000;
+    -webkit-text-stroke: 1px var(--primary);
+    background:
+        radial-gradient(0.71em at 50% 1em, var(--primary) 99%, #0000 101%) calc(50% - 1em) 1em/2em 200% repeat-x text,
+        radial-gradient(0.71em at 50% -0.5em, #0000 99%, var(--primary) 101%) 50% 1.5em/2em 200% repeat-x text;
+    animation:
+        l10-0 .8s linear infinite alternate,
+        l10-1 4s linear infinite;
+}
+
+.loader:before {
+    content: "Generating Quiz";
+}
+
+@keyframes l10-0 {
+    to {
+        background-position-x: 50%, calc(50% + 1em)
+    }
+}
+
+@keyframes l10-1 {
+    to {
+        background-position-y: -.5em, 0
     }
 }
 
