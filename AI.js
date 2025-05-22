@@ -1,4 +1,4 @@
-const apiKey = "AIzaSyAxuab6K_703XmpSqd4L_4tJggKALKB24c";
+const apiKey = "AIzaSyAp1Zebu2JWNd5obad4XgD63WUFf1J9Wpk";
 
 async function run(userInput) {
     const url = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=" + apiKey;
