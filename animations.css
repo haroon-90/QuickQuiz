@@ -107,7 +107,7 @@
 
 
 /* 🔄 Typing Dots Loader */
-/* .typing-loader {
+.typing-loader {
     display: flex;
     gap: 6px;
     justify-content: center;
@@ -143,4 +143,4 @@
         transform: scale(1.2);
         opacity: 1;
     }
-} */
+}
