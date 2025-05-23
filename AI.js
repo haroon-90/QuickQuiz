@@ -11,16 +11,24 @@ async function run(userInput) {
             }]
         }]
     };
-    const response = await fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(requestBody)
-    });
-    const data = await response.json();
-    console.log(data);
-    return data?.candidates[0]?.content?.parts[0]?.text;
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        });
+        const data = await response.json();
+        console.log(data);
+        return data?.candidates[0]?.content?.parts[0]?.text;
+    } catch (error) {
+        console.error("An error occurred:", error);
+        alert("Sorry, we couldn't generate your quiz at this time due to technical error. Please try again in a moment.");
+        is_generating = false;
+        updateLoadingAnimation();
+        return null;
+    }
 }
 let questions = [];
 let input;
@@ -45,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Please enter a topic to generate quiz")
         else {
             document.getElementById('quiz-container').style.display = 'block';
+            submitButton.disabled = false;
             document.getElementById('quiz-container').innerHTML = '';
             topicNameElement.innerHTML = `Topic: ${input}`;
             is_generating = true;
@@ -156,7 +165,6 @@ document.getElementById('retry-quiz').addEventListener('click', () => {
 });
 const about = document.querySelector('.about');
 
-// Show a modal box with developer info at the center of the screen on click of the .about element
 const aboutModal = document.createElement('div');
 aboutModal.classList.add('aboutmodal');
 
