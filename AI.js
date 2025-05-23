@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const jsonString = response.trim();
             const cleanResponse = jsonString.startsWith('```json') ? jsonString.slice(7, -3) : jsonString;
             questions = JSON.parse(cleanResponse);
+            console.log(questions);
             is_generating = false;
             updateLoadingAnimation()
             renderQuizCards(questions, quizContainer);
